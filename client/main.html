@@ -1,0 +1,87 @@
+<head>
+	<title>Andrew's Todos!</title>
+</head>
+
+<body>
+	{{> layout}}
+</body>
+
+<template name="layout">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul id="navbar" class="nav navbar-nav">
+					<li id="view1" class="{{activeTab.view1.class}}"><a href="{{pathFor 'home'}}">home</a></li>
+					<li id="view2" class="{{activeTab.view2.class}}"><a href="{{pathFor 'todos'}}">todos</a></li>
+					<li id="view3" class="{{activeTab.view3.class}}"><a href="{{pathFor 'about'}}">about</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{{> loginButtons}}
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container">
+		{{> yield}}
+	</div><!-- /.container -->
+</template>
+
+<template name="home">
+	<div>
+		{{> content}}
+	</div>
+</template>
+
+<template name="todos">
+	<div>
+		{{#if currentUser}}
+		<h1>Todos</h1>
+		{{#if existingTodos}}
+			<p>You don't have any todos! Add one now:</p>
+		{{/if}}
+		<ul id="todos" class="unstyled">
+			{{#each todos}}
+			{{> todo}}
+			{{/each}}
+		</ul>
+		<form class="form-inline">
+			<input id="todo-title" type="text"/>
+			<button id="add-btn" class="btn btn-success">Add</button>
+			<p>
+			  <a href id="remove-completed-btn">Remove completed items</a>
+			</p>
+		</form>
+		{{else}}
+		<h1>Please log in to view todos!</h1>
+		{{/if}}
+	</div>
+</template>
+
+<template name="about">
+	<div>
+		<h1>About Me!</h1>
+	</div>
+</template>
+
+<template name="content">
+  <h1>Welcome!</h1>
+</template>
+
+<template name="todo">
+	<li>
+		<label class="checkbox">
+			<input type="checkbox" id="{{_id}}" checked="{{completed}}" />
+			{{title}}
+		</label>
+	</li>
+</template>

@@ -1,0 +1,17 @@
+{
+	"fs": {
+		"git": "git://github.com/matthewp/fs.git"
+	},
+	"colors": {
+		"git": "git://github.com/mrmrs/colors.git"
+	},
+	"path": {
+		"git": "git://github.com/anodynos/node2web_path.git"
+	},
+	"http": {
+		"git": "git://github.com/anodynos/node2web_http.git"
+	},
+	"famous": {
+		"git": "git://github.com/Famous/famous.git"
+	}
+}
