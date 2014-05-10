@@ -1,7 +1,12 @@
 var Todos = new Meteor.Collection("todos");
 
 Meteor.startup(function () {
-  // code to run on server at startup
+  Accounts.loginServiceConfiguration.remove({"service": "twitter"});
+  Accounts.loginServiceConfiguration.insert({
+    "service": "twitter",
+    "consumerKey" : consumerKey,
+    "secret" : secret
+  });
 });
 
 Router.map(function () {
